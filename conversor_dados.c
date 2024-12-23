@@ -12,10 +12,15 @@ void converte(int valor, int unidade_origem, int unidade_destino)
     printf("Convertendo valor...\n");
 
     double bases[] = {BITS, BYTES, KILOBYTES, MEGABYTES, GIGABYTES, TERABYTES};
-    for (int i = 0; i < 6; i++)
-    {
-        printf("%.4f\n", bases[i]);
-    }
+
+    // Teste para conferir valores
+    // for (int i = 0; i < 6; i++)
+    // {
+    //     printf("%.4f\n", bases[i]);
+    // }
+
+    double resultado = valor * bases[unidade_origem - 1] / bases[unidade_destino - 1];
+    printf("Resultado da conversao: %.4f\n", resultado);
 }
 
 int menu()
@@ -43,14 +48,19 @@ int main(void)
     {
         printf("CONVERTER DE:\n\n");
         unidade_origem = menu();
+
         printf("CONVERTER PARA:\n\n");
         unidade_destino = menu();
+
+        printf("Digite o valor a ser convertido:\n\n");
+        scanf("%d", &valor);
+
+        converte(valor, unidade_origem, unidade_destino);
+
         printf("Deseja realizar outra conversao?\n\n");
-        printf("1 - Sim\n2 - Nao");
+        printf("1 - Sim\n2 - Nao\n");
         scanf("%d", &op);
     }
-
-    converte(valor, unidade_origem, unidade_destino);
 
     return 0;
 }

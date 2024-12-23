@@ -4,6 +4,7 @@
 #include "../includes/conversor_de_potencia.h"
 #include "../includes/conversor_temperatura.h"
 #include "../includes/conversor_de_tempo.h"
+#include "../includes/conversao_massa.h"
 #include "../includes/conversor_velocidade.h"
 #include "../includes/conversao_distancia.h"
 
@@ -12,6 +13,7 @@ int dados_main();
 int potencia_main();
 int temperatura_main();
 int tempo_main();
+int massa_main();
 int conversor_main();
 int distancia_main();
 
@@ -20,6 +22,7 @@ int main() {
 
     do {
         printf("Menu Principal:\n");
+        printf("2. Acessar o menu de conversão de unidades de massa (quilos, quilogramas, toneladas)\n");
         printf("1. Acessar o menu de conversão de unidades de comprimento (metro, centímetro, milímetro)\n");
         printf("3. Acessar o menu de conversão de unidades de volume (litro, mililitro, metros cúbicos)\n");
         printf("4. Acessar o menu de conversão de unidade de temperatura (Celsius, Fahrenheit, Kelvin)\n");
@@ -32,6 +35,8 @@ int main() {
         scanf("%d", &opcao);
 
         switch (opcao) {
+            case 2:
+                massa_main();  // Chama a função principal do arquivo de conversão
             case 1:
                 distancia_main();  // Chama a função principal do arquivo de conversão
                 break;

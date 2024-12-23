@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int distancia_main() {
     int escolha;
 
     printf("Escolha uma conversao:\n");

@@ -1,8 +1,8 @@
-#ifndef CONVERSAO_H
-#define CONVERSAO_H
+#ifndef CONVERSAO_UNIDADES_H
+#define CONVERSAO_UNIDADES_H
 
 void conversao_main();
-void menu();
+
 double litros_para_mililitros(double litros);
 double litros_para_metro_cubico(double litros);
 double mililitros_para_litros(double milililitros);

@@ -4,6 +4,7 @@
 void conversao_main();
 int dados_main();
 int potencia_main();
+int temperatura_main();
 
 int main() {
     int opcao;
@@ -11,6 +12,7 @@ int main() {
     do {
         printf("Menu Principal:\n");
         printf("3. Acessar o menu de conversão de unidades de volume (litro, mililitro, metros cúbicos)\n");
+        printf("4. Acessar o menu de conversão de unidade de temperatura (Celsius, Fahrenheit, Kelvin)\n");
         printf("6. Acessar o menu de conversão Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp)\n");
         printf("9. Acessar o menu de conversão Bits, bytes, kilobytes (KB), megabytes (MB), gigabytes (GB), terabytes (TB)\n");
         printf("0. Sair\n");
@@ -20,6 +22,9 @@ int main() {
         switch (opcao) {
             case 3:
                 conversao_main();  // Chama a função principal do arquivo de conversão
+                break;
+             case 4:
+                temperatura_main();
                 break;
             case 6:
                 potencia_main();

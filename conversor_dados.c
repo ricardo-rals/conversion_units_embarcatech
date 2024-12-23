@@ -1,8 +1,21 @@
 #include <stdio.h>
 
+#define BITS (1.0 / 8.0)
+#define BYTES 1
+#define KILOBYTES 1024
+#define MEGABYTES (1024.0 * 1024)
+#define GIGABYTES (1024.0 * 1024 * 1024)
+#define TERABYTES (1024.0 * 1024 * 1024 * 1024)
+
 void converte(int valor, int unidade_origem, int unidade_destino)
 {
-    printf("Convertendo valor...");
+    printf("Convertendo valor...\n");
+
+    double bases[] = {BITS, BYTES, KILOBYTES, MEGABYTES, GIGABYTES, TERABYTES};
+    for (int i = 0; i < 6; i++)
+    {
+        printf("%.4f\n", bases[i]);
+    }
 }
 
 int menu()
@@ -33,7 +46,7 @@ int main(void)
         printf("CONVERTER PARA:\n\n");
         unidade_destino = menu();
         printf("Deseja realizar outra conversao?\n\n");
-        printf("1 - Sim\n2-Nao");
+        printf("1 - Sim\n2 - Nao");
         scanf("%d", &op);
     }
 

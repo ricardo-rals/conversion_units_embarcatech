@@ -22,8 +22,8 @@ int main() {
 
     do {
         printf("Menu Principal:\n");
-        printf("2. Acessar o menu de conversão de unidades de massa (quilos, quilogramas, toneladas)\n");
         printf("1. Acessar o menu de conversão de unidades de comprimento (metro, centímetro, milímetro)\n");
+        printf("2. Acessar o menu de conversão de unidades de massa (quilos, quilogramas, toneladas)\n");
         printf("3. Acessar o menu de conversão de unidades de volume (litro, mililitro, metros cúbicos)\n");
         printf("4. Acessar o menu de conversão de unidade de temperatura (Celsius, Fahrenheit, Kelvin)\n");
         printf("5. Acessar o menu de conversão de unidades de velocidade (km/h, m/s, mph)\n");

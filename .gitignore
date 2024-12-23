@@ -1,1 +1,24 @@
+# Output directory
 output/
+
+# Object files
+*.o
+
+# Executables
+*.exe
+
+# Backup files
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Visual Studio Code settings
+.vscode/

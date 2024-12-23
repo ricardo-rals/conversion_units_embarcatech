@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int massa_main() {
     float valor, resultado;
     int unidadeEntrada, unidadeSaida;
 

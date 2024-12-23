@@ -4,18 +4,21 @@
 #include "../includes/conversor_de_potencia.h"
 #include "../includes/conversor_temperatura.h"
 #include "../includes/conversor_de_tempo.h"
+#include "../includes/conversao_massa.h"
 
 void conversao_main();
 int dados_main();
 int potencia_main();
 int temperatura_main();
 int tempo_main();
+int massa_main();
 
 int main() {
     int opcao;
 
     do {
         printf("Menu Principal:\n");
+        printf("2. Acessar o menu de conversão de unidades de massa (quilos, quilogramas, toneladas)\n");
         printf("3. Acessar o menu de conversão de unidades de volume (litro, mililitro, metros cúbicos)\n");
         printf("4. Acessar o menu de conversão de unidade de temperatura (Celsius, Fahrenheit, Kelvin)\n");
         printf("6. Acessar o menu de conversão Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp)\n");
@@ -26,6 +29,9 @@ int main() {
         scanf("%d", &opcao);
 
         switch (opcao) {
+            case 2:
+                massa_main();  // Chama a função principal do arquivo de conversão
+                break;
             case 3:
                 conversao_main();  // Chama a função principal do arquivo de conversão
                 break;

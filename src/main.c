@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include "../includes/conversao_volume.h"
+#include "../includes/conversor_dados.h"
+#include "../includes/conversor_de_potencia.h"
+#include "../includes/conversor_temperatura.h"
+#include "../includes/conversor_de_tempo.h"
 
 void conversao_main();
 int dados_main();
 int potencia_main();
 int temperatura_main();
+int tempo_main();
 
 int main() {
     int opcao;
@@ -14,6 +19,7 @@ int main() {
         printf("3. Acessar o menu de conversão de unidades de volume (litro, mililitro, metros cúbicos)\n");
         printf("4. Acessar o menu de conversão de unidade de temperatura (Celsius, Fahrenheit, Kelvin)\n");
         printf("6. Acessar o menu de conversão Watts (W), quilowatts (kW), cavalos-vapor (cv ou hp)\n");
+        printf("8. Acessar o menu de conversão de unidades de tempo (segundos, minutos, horas)\n");
         printf("9. Acessar o menu de conversão Bits, bytes, kilobytes (KB), megabytes (MB), gigabytes (GB), terabytes (TB)\n");
         printf("0. Sair\n");
         printf("Digite a opção: ");
@@ -28,6 +34,9 @@ int main() {
                 break;
             case 6:
                 potencia_main();
+                break;
+            case 8:
+                tempo_main();
                 break;
             case 9:
                 dados_main();

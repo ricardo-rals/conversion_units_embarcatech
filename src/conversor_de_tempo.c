@@ -4,7 +4,7 @@ void convertSeconds(double seconds);
 void convertMinutes(double minutes);
 void convertHours(double hours);
 
-int main() {
+int tempo_main() {
     int choice;
     double value;
 

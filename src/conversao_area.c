@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-Função para converter metros quadrados para centímetros quadrados
+// Função para converter metros quadrados para centímetros quadrados
 float metrosParaCentimetros(float metros) {
     return metros * 10000;
 }
 
- Função para converter centímetros quadrados para metros quadrados
+//  Função para converter centímetros quadrados para metros quadrados
 float centimetrosParaMetros(float centimetros) {
     return centimetros / 10000;
 }
 
-int main() {
+int area_main() {
     float valor;
     int escolha;
 

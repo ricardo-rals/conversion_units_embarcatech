@@ -25,6 +25,7 @@ $(TARGET): $(OBJECTS) $(MAIN_OBJECT)
 
 # Compila os arquivos de origem
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 # Compila o arquivo main.c
@@ -44,12 +45,15 @@ test: $(TEST_OBJECTS) $(OBJECTS)
 	./$(TEST_TARGET)
 
 # Regra para compilar e executar um teste específico
-test_%: $(TEST_OUT_DIR)/test_%.o $(OBJECTS)
+test_%: $(TEST_OUT_DIR)/%.o $(OBJECTS)
 	@mkdir -p $(TEST_OUT_DIR)
-	$(CC) -o $(TEST_TARGET) $< $(OBJECTS) -lcunit -lm
-	@echo "Running test $<..."
-	./$(TEST_TARGET)
+	$(CC) -o $(TEST_TARGET)_$* $< $(OBJECTS) -lcunit -lm
+	@echo "Running test $*..."
+	./$(TEST_TARGET)_$*
 
 # Limpeza dos arquivos gerados
 clean:
-	rm -rf $(OUT_DIR)/*
+	rm -rf $(OUT_DIR)
+# Limpeza dos arquivos de testes
+clean_tests:
+	rm -rf output/test/

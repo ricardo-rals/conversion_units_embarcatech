@@ -1,59 +1,56 @@
+# Variáveis
 CC = gcc
 CFLAGS = -Wall -Wextra -g3
 SRC_DIR = src
 INC_DIR = includes
 OUT_DIR = output
 TEST_DIR = tests
-TEST_OUT_DIR = $(OUT_DIR)/test
+TEST_OUT_DIR = $(OUT_DIR)/tests
 TARGET = $(OUT_DIR)/main
-TEST_TARGET = $(TEST_OUT_DIR)/test
+TEST_TARGET = $(TEST_OUT_DIR)/tests
 
+# Coleta os arquivos de origem
 SOURCES = $(wildcard $(SRC_DIR)/*.c)
-OBJECTS = $(filter-out $(OUT_DIR)/main.o, $(SOURCES:$(SRC_DIR)/%.c=$(OUT_DIR)/%.o))
-MAIN_SOURCE = $(SRC_DIR)/main.c
-MAIN_OBJECT = $(OUT_DIR)/main.o
+OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OUT_DIR)/%.o)
 
-# Coleta todos os arquivos de teste
+# Arquivos de teste
 TEST_SOURCES = $(wildcard $(TEST_DIR)/*.c)
 TEST_OBJECTS = $(TEST_SOURCES:$(TEST_DIR)/%.c=$(TEST_OUT_DIR)/%.o)
 
-# Regra para compilar o programa principal
+# Regras
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS) $(MAIN_OBJECT)
+$(TARGET): $(OBJECTS)
 	$(CC) -o $@ $^
 
-# Compila os arquivos de origem
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
-# Compila o arquivo main.c
-$(MAIN_OBJECT): $(MAIN_SOURCE)
-	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
-
-# Compila os arquivos de teste
 $(TEST_OUT_DIR)/%.o: $(TEST_DIR)/%.c
 	@mkdir -p $(TEST_OUT_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
-# Regra para compilar todos os testes
 test: $(TEST_OBJECTS) $(OBJECTS)
 	@mkdir -p $(TEST_OUT_DIR)
-	$(CC) -o $(TEST_TARGET) $(TEST_OBJECTS) $(OBJECTS) -lcunit -lm
-	@echo "Running all tests..."
-	./$(TEST_TARGET)
+	$(CC) $(CFLAGS) -DBUILD_TEST_MAIN $(filter-out $(OUT_DIR)/main.o, $(OBJECTS)) $(TEST_OBJECTS) -lcunit -lm -o $(TEST_OUT_DIR)/tests
+	./$(TEST_OUT_DIR)/tests
 
-# Regra para compilar e executar um teste específico
-test_%: $(TEST_OUT_DIR)/%.o $(OBJECTS)
+# test_%: $(TEST_OUT_DIR)/%.o $(OBJECTS)
+# 	@mkdir -p $(TEST_OUT_DIR)
+# 	$(CC) -o $(TEST_TARGET)_$* $< $(OBJECTS) -lcunit -lm
+# 	@echo "Running test $*..."
+# 	./$(TEST_TARGET)_$*
+
+test_%: $(TEST_DIR)/%.c $(OBJECTS)
 	@mkdir -p $(TEST_OUT_DIR)
-	$(CC) -o $(TEST_TARGET)_$* $< $(OBJECTS) -lcunit -lm
+	$(CC) $(CFLAGS) -DBUILD_TEST_MAIN $(TEST_DIR)/$*.c $(filter-out $(OUT_DIR)/main.o, $(OBJECTS)) -lcunit -lm -o $(TEST_OUT_DIR)/$*
 	@echo "Running test $*..."
-	./$(TEST_TARGET)_$*
+	./$(TEST_OUT_DIR)/$*
 
-# Limpeza dos arquivos gerados
 clean:
 	rm -rf $(OUT_DIR)
+
 # Limpeza dos arquivos de testes
 clean_tests:
-	rm -rf output/test/
+	rm -rf output/tests/

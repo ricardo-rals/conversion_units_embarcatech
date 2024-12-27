@@ -3,5 +3,7 @@
 
 // Função principal que orquestra as conversões
 int area_main();
+float metrosParaCentimetros(float valor);
+float centimetrosParaMetros(float valor);
 
 #endif // CONVERSAO_UNIDADES_H

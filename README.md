@@ -100,7 +100,10 @@ make test
 ```bash
 make test_<nome_do_teste>
 ```
-
+#### Exemplo: Se o arquivo de teste se chamar conversao_volume_test.c, você pode executar o seguinte comando:
+```bash
+make test_conversao_volume_test
+```
 Os resultados dos testes serão exibidos no terminal.
 
 ## Limpeza dos Arquivos
